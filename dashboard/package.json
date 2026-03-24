@@ -1,0 +1,17 @@
+{
+  "name": "strategy-project-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node build-data.js",
+    "start": "node build-data.js && npx serve . -l 3000",
+    "dev": "node build-data.js && concurrently \"npx serve . -l 3000\" \"node watch.js\""
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.0",
+    "marked": "^12.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

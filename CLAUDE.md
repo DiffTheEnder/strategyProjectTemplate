@@ -1,0 +1,116 @@
+# CLAUDE.md
+
+## Current Date
+
+Always use `date` via Bash to get today's date at the start of a session.
+
+## What We're Building
+
+**{{PROJECT_NAME}}** — {{ONE_LINE_DESCRIPTION}}. Goal: {{GOAL}}. Team: {{TEAM}}.
+
+## Scope
+
+{{SCOPE_DEFINITION}}. Out of scope: {{OUT_OF_SCOPE}}.
+
+## Core Bet
+
+{{STRATEGIC_HYPOTHESIS}}
+
+## Target Customer
+
+{{ICP_DESCRIPTION}}
+
+---
+
+## Context Loading
+
+Load the snapshot for your task type. **Do not read raw source files unless the snapshot is insufficient for your task.**
+
+| Task | Load first |
+|------|-----------|
+| Discovery call prep, hypothesis work, strategic review | `context/project-state.md` |
+| Pipeline updates, outreach, call scheduling | `context/pipeline-state.md` |
+| Competitor or market research | `context/competitor-snapshot.md` + `context/market-snapshot.md` |
+| Housekeeping | `context/project-state.md` (verify what changed this session) |
+
+### Three Loading Modes
+
+| Mode | When | Rule |
+|------|------|------|
+| **Fast** | Pipeline updates, housekeeping, scheduling, call prep | Snapshot only |
+| **Standard** | Research, competitor analysis, entity enrichment | Snapshot + targeted raw files as needed |
+| **Deep** | Hypothesis review, critical reasoning, kill condition updates, strategic decisions | Load snapshot for orientation — then read ALL raw evidence before forming any view |
+
+**Deep mode rule**: Snapshots tell you what was concluded; raw files contain disconfirming signals, hedged language, and contradictions that drive good reasoning. For hypothesis-class work, reading only snapshots is not acceptable.
+
+Raw evidence sources for Deep mode:
+- All files in `discovery/calls/` — every call note
+- `memory/decisions.md` — full decision log with rationale
+- `memory/research.md` — capability map and market findings
+
+---
+
+## Multi-Agent Coordination
+
+### Before Starting
+1. Read `STATUS.md` — check for conflicts.
+2. Add yourself to "In Progress" with workstream, item, date.
+3. Use templates from `templates/`.
+
+### While Working
+- One file per unit of work.
+- Research → `research/`. Discovery → `discovery/`. Docs → `docs/`.
+- Never overwrite another agent's in-progress file without reading it first.
+
+### Pipeline Work
+Dashboard source of truth: `{{PIPELINE_SOURCE_OF_TRUTH}}` — add {{ENTITY_TYPE_PLURAL}} here first, never only to JSON.
+
+### After Completing Work
+1. Move STATUS.md row to "Completed Recently".
+2. Update the relevant `context/` snapshot — keep it current for the next session.
+3. If work changes hypothesis or kill conditions → run `/critical-reasoning` before updating `docs/executive-summary.md`.
+
+### Executive Summary Rule
+`docs/executive-summary.md` is the single source of truth. Update after: every discovery call, kill condition changes, major research, strategic decisions.
+
+### Agent Briefing Format
+Task → Constraints → 3–5 key facts (with file paths, not content) → output spec → model weight. No file content dumps.
+
+---
+
+## Model Routing
+
+Default: Opus. Switch to Sonnet for mechanical/template work (`/model sonnet`).
+
+Opus required: hypothesis review, discovery call processing, critical reasoning, strategic decisions.
+Sonnet fine: competitor research, call prep, housekeeping, dashboard/data work.
+
+---
+
+## End-of-Session Housekeeping (MANDATORY)
+
+Run `/housekeeping`. Full checklist: `docs/memos/housekeeping-reference.md`.
+
+After any session that changes discovery, pipeline, or decisions — regenerate the affected `context/` snapshot before committing.
+
+Evidence grading rules: `docs/memos/evidence-grading.md`
+
+---
+
+## Relevant User-Level Skills
+
+<!-- These skills live at ~/.claude/skills/ and are available across all projects.
+     Add project-specific context sections to them if needed. -->
+
+- `/bottom-up-tam`, `/micro-segmentation` — market sizing
+- `/critical-reasoning` — hypothesis stress-testing (user-level version has additional vertical SaaS lens; project-level version is domain-agnostic)
+- `/strategic-framework-synthesiser` — structured analysis (Porter's, PESTLE, BCG, etc.)
+- `/gtm-playbook` — go-to-market planning
+- `/outside-in-benchmarking` — competitive analysis
+- `/pricing-packaging` — monetisation design
+- `/unit-economics-modeler` — CAC, LTV, payback period
+- `/burning-platform` — change management narratives
+- `/macro-trend-synthesis` — PESTLE+ trend analysis
+- `/partnership-ecosystem-strategy` — partner program design
+- `/product-roadmap-prioritisation` — backlog prioritisation
+- `/profit-pool-mapping` — value chain analysis
