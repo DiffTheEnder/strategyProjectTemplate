@@ -110,7 +110,9 @@ GitHub is where your project lives online. You'll need it for:
    - **Quick Start** (5 minutes): Just the basics — project name, what it's about, your hypothesis
    - **Full Setup** (15 minutes): Everything including scoring dimensions, kill conditions, and feature selection
 
-4. Claude will configure all the files based on your answers
+4. Claude will ask what type of project you're running — market entry, growth strategy, competitor research, product launch, internal implementation, vendor evaluation, due diligence, business case, transformation, or custom. Each type comes with sensible defaults for which features to enable.
+
+5. Claude will configure all the files based on your answers
 
 **Tip**: If you're new to this, choose **Quick Start** and select **"Learning"** as your goal. Claude will point you to the example project so you can explore first.
 

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] — 2026-03-26
+
+### Added
+- 6 new project types: Competitor Research, Product Launch / GTM, Internal Implementation, Vendor / Partner Evaluation, Due Diligence, Business Case, Transformation / Change
+- Alternative pipeline lifecycle for non-outreach projects (Not started → In progress → Blocked → Completed → Cancelled)
+- `projectType` field in project.config.json
+- Type-specific scoring dimensions and kill condition examples for all 10 types
+
+### Changed
+- Replaced "Corporate Strategy" with more specific types: Business Case and Transformation / Change
+- Onboarding now offers 10 project types with tailored defaults for each
+
 ## [1.1.0] — 2026-03-26
 
 ### Added

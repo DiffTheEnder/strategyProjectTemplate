@@ -25,7 +25,17 @@ Ask only these 7 questions:
 1. **What's the project name?** (e.g., "Immutable Audience — Mobile")
 2. **One-line description** — what is this project about in one sentence? (e.g., "Evaluate the mobile gaming market for audience monetisation opportunities")
 3. **What's the core hypothesis or strategic bet?** (e.g., "Mobile gamers aged 18–30 will pay for premium audience insights if delivered in-app")
-4. **What type of project is this?** — Market entry / Growth strategy / Corporate strategy / Custom
+4. **What type of project is this?**
+   - **Market entry** — evaluating a new market or product opportunity
+   - **Growth strategy** — expanding an existing product into new channels or segments
+   - **Competitor research** — mapping the competitive landscape and intelligence gathering
+   - **Product launch / GTM** — bringing a product or feature to market
+   - **Internal implementation** — rolling out a new system, process, or initiative
+   - **Vendor / partner evaluation** — selecting tools, platforms, or partners
+   - **Due diligence** — M&A, investment, or acquisition evaluation
+   - **Business case** — building a case for investment or strategic change
+   - **Transformation / change** — organisational or process transformation
+   - **Custom** — something else (you'll choose which modules to include)
 5. **What's the primary entity you're tracking?** (e.g., "studio", "customer", "partner") — enter "none" to skip the discovery module entirely
 
 6. **What's your main goal?** (Pick one)
@@ -73,7 +83,7 @@ Then auto-fill defaults:
 - `{{ICP_DESCRIPTION}}` → "TBD — update in MEMORY.md"
 - `{{PIPELINE_SOURCE_OF_TRUTH}}` → `data/entities.csv`
 - `{{DASHBOARD_URL}}` → "TBD"
-- Scoring dimensions → White Space, Urgency, Feasibility, Defensibility, Revenue Potential
+- Scoring dimensions → based on project type (see Group 5 defaults)
 - Kill conditions → "TBD — define within first week"
 - Discovery module → included unless user answered "none" for entity type (or "Minimal" structure)
 - Dashboard module → included by default (unless "Minimal" structure)
@@ -155,10 +165,18 @@ Once all checks pass (or the user acknowledges warnings), proceed to Group 1.
 ### Group 3: Project Type & Modules
 
 8. **What type of project is this?**
-   - Market entry (new market, new product) → include all modules (e.g., "Launching a new analytics SaaS into the mobile gaming vertical")
-   - Growth strategy (existing product, new channels/segments) → include discovery + pipeline (e.g., "Expanding our enterprise plan into the ANZ mid-market")
-   - Corporate strategy / planning (internal analysis) → skip discovery + pipeline (e.g., "Annual strategic review and resource allocation for FY27")
-   - Custom → ask which modules to include
+   - **Market entry** (new market, new product) → all modules, entity type: "prospect"
+   - **Growth strategy** (existing product, new channels/segments) → all modules, entity type: "prospect"
+   - **Competitor research** (competitive intelligence, landscape mapping) → no discovery/pipeline, dashboard on, entity type: "competitor"
+   - **Product launch / GTM** (go-to-market planning) → all modules, entity type: "prospect"
+   - **Internal implementation** (system rollout, process change) → pipeline + dashboard, no discovery, entity type: "workstream"
+   - **Vendor / partner evaluation** (tool or partner selection) → all modules, entity type: "vendor"
+   - **Due diligence** (M&A, investment evaluation) → all modules, entity type: "target"
+   - **Business case** (investment decision, strategic proposal) → no discovery/pipeline, optional dashboard, entity type: "option"
+   - **Transformation / change** (organisational transformation) → all modules, entity type: "initiative"
+   - **Custom** → ask which modules to include
+
+   (e.g., "Internal implementation — we're rolling out a new CRM across the sales team")
 
 9. **Do you need a discovery/outreach pipeline?** (Yes/No)
    - If yes: What's the primary entity you're tracking? (e.g., "studio", "customer", "partner", "company")
@@ -194,7 +212,16 @@ Once all checks pass (or the user acknowledges warnings), proceed to Group 1.
 ### Group 5: Scoring Dimensions
 
 12. **What dimensions do you want to score your strategic options on?** (e.g., White Space, Urgency, Feasibility, Defensibility, Revenue Potential)
-    - Suggest defaults based on project type
+    - Suggest defaults based on project type:
+      - Market entry: White Space, Urgency, Feasibility, Defensibility, Revenue Potential
+      - Growth: Growth Potential, CAC Efficiency, Retention Impact, Speed to Market, Scalability
+      - Competitor research: Market Share, Product Strength, Pricing Power, Growth Trajectory, Threat Level
+      - Product launch / GTM: Market Readiness, Channel Fit, Competitive Timing, Resource Requirement, Revenue Impact
+      - Internal implementation: Business Impact, Technical Complexity, Change Readiness, Resource Cost, Timeline Risk
+      - Vendor / partner evaluation: Capability Fit, Total Cost, Integration Effort, Vendor Stability, Lock-in Risk
+      - Due diligence: Strategic Fit, Financial Health, Integration Risk, Synergy Potential, Cultural Alignment
+      - Business case: ROI Potential, Strategic Alignment, Execution Risk, Stakeholder Support, Opportunity Cost
+      - Transformation / change: Impact Scope, Organisational Readiness, Resource Requirement, Risk Level, Time to Value
     - Update `memory/scoring.md` with chosen dimensions
     - Example: "We use: Market Size, Willingness to Pay, Technical Feasibility, Speed to Launch, Defensibility"
 
@@ -202,9 +229,15 @@ Once all checks pass (or the user acknowledges warnings), proceed to Group 1.
 
 13. **Define 4–6 kill conditions** — falsifiable thresholds that, if crossed, mean the project should stop or pivot. Each should be specific and measurable.
     - Provide examples based on project type:
-      - Market entry: "<3/10 prospects rank pain in top 3", "No WTP signal above $500/mo after 15 calls"
+      - Market entry: "<4/15 prospects rank pain in top 3", "No WTP signal above $12k/yr after 10 calls"
       - Growth: "CAC exceeds $120 after 3 months", "Conversion rate below 2% after 500 trials"
-      - Corporate: "Board rejects proposal at Q2 review", "ROI falls below 15% in revised model"
+      - Competitor research: "Fewer than 3 viable competitors identified after 4 weeks", "No clear white space found in the landscape"
+      - Product launch / GTM: "Pre-launch signups below 500 after 6 weeks", "Channel partner conversion below 5%"
+      - Internal implementation: "User adoption below 40% after 3 months", "Integration costs exceed budget by >30%"
+      - Vendor / partner evaluation: "No vendor scores above 3/5 on critical requirements", "Total cost exceeds budget ceiling"
+      - Due diligence: "Revenue claims can't be verified from available data", "Cultural alignment scores below threshold after site visits"
+      - Business case: "Board rejects proposal at Q2 review", "ROI falls below 15% in revised model"
+      - Transformation / change: "Key sponsor leaves the organisation", "Employee engagement scores drop >10 points"
     - Example answer: "1. Fewer than 3/10 studios rank our pain point in their top 3. 2. No willingness-to-pay signal above $1k/mo after 15 discovery calls. 3. TAM estimate falls below $50M. 4. Unable to secure 5 design partners in 6 weeks."
 
 ---
@@ -271,8 +304,23 @@ Once the user confirms and all answers are finalised:
    - `memory/discovery.md` Kill Condition Tracker (if discovery module active)
    - `context/project-state.md` Kill Conditions table
 
-3. **Remove optional modules** if not needed (Q8/Q9):
+3. **Remove optional modules** based on project type (Q8) and user answers (Q9):
+
+   Module defaults by project type:
+   - Market entry → discovery: yes, pipeline: yes, dashboard: yes
+   - Growth strategy → discovery: yes, pipeline: yes, dashboard: yes
+   - Competitor research → discovery: no, pipeline: no, dashboard: yes
+   - Product launch / GTM → discovery: yes, pipeline: yes, dashboard: yes
+   - Internal implementation → discovery: no, pipeline: yes, dashboard: yes
+   - Vendor / partner evaluation → discovery: yes, pipeline: yes, dashboard: yes
+   - Due diligence → discovery: yes, pipeline: yes, dashboard: yes
+   - Business case → discovery: no, pipeline: no, dashboard: optional
+   - Transformation / change → discovery: yes, pipeline: yes, dashboard: yes
+   - Custom → ask user
+
+   Apply removals:
    - If no discovery: delete `discovery/`, `memory/discovery.md`, `context/pipeline-state.md`, `dashboard/pipeline.html`, `skills/pipeline-update/`, `skills/outreach-sequence/`, `.claude/agents/discovery-strategist.md`, `.claude/agents/gtm-specialist.md`
+   - If no pipeline: delete `skills/pipeline-update/`, `skills/outreach-sequence/`, `.claude/agents/gtm-specialist.md`
    - If no dashboard: delete `dashboard/`
 
 4. **Apply feature-level removals** based on Q16 (Full Setup) or structure selection (Quick Start):
@@ -307,6 +355,7 @@ Write the project configuration to `project.config.json` at the repo root using 
   "templateVersion": "1.0.0",
   "projectName": "<Q1>",
   "projectSlug": "<auto-generated slug>",
+  "projectType": "{selected type}",
   "oneLineDescription": "<Q2>",
   "goal": "<Q3>",
   "team": "<Q4>",

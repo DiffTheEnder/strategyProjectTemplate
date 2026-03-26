@@ -105,9 +105,15 @@ The `/onboard` wizard configures the stack based on your project type:
 
 | Type | Discovery | Pipeline | Dashboard | Best For |
 |------|:---------:|:--------:|:---------:|----------|
-| Market Entry | Yes | Yes | Yes | New market, new product evaluation |
-| Growth Strategy | Yes | Yes | Yes | Existing product, new channels/segments |
-| Corporate Strategy | No | No | Optional | Internal analysis, planning |
+| Market Entry | Yes | Yes | Yes | New market or product evaluation |
+| Growth Strategy | Yes | Yes | Yes | Existing product, new channels or segments |
+| Competitor Research | No | No | Yes | Competitive intelligence and landscape mapping |
+| Product Launch / GTM | Yes | Yes | Yes | Bringing a product or feature to market |
+| Internal Implementation | No | Yes | Yes | Rolling out a system, process, or initiative |
+| Vendor / Partner Evaluation | Yes | Yes | Yes | Selecting tools, platforms, or partners |
+| Due Diligence | Yes | Yes | Yes | M&A, investment, or acquisition evaluation |
+| Business Case | No | No | Optional | Building a case for investment or change |
+| Transformation / Change | Yes | Yes | Yes | Organisational or process transformation |
 | Custom | Choose | Choose | Choose | Anything else |
 
 ---

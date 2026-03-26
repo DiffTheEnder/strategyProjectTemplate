@@ -21,11 +21,28 @@ description: Use when the user reports a pipeline status change — intro receiv
 | Meeting booked | Meeting completed | Call/meeting happened |
 | Any | Dead | Disqualified, unresponsive, or explicitly declined |
 
+### Alternative Lifecycle (for implementation, transformation, and internal projects)
+
+| From | To | Trigger |
+|------|----|---------|
+| (new) | Not started | Entity/workstream added to pipeline |
+| Not started | In progress | Work has begun |
+| In progress | Blocked | Dependency or issue preventing progress |
+| Blocked | In progress | Blocker resolved |
+| In progress | Completed | Work finished and verified |
+| Any | Cancelled | Workstream deprioritised or abandoned |
+
+Use this lifecycle when the project type is **Internal Implementation**, **Transformation / Change**, or any project where entities represent workstreams or initiatives rather than outreach targets.
+
+The project type is stored in `project.config.json` under `projectType`. Check this to determine which lifecycle to use.
+
 ---
 
 ## Step 0 — Identify the Event
 
 What happened? Map it to a status transition from the table above. If ambiguous, ask the user.
+
+Check `project.config.json` `projectType` to determine which status lifecycle to use (outreach vs implementation).
 
 ## Step 1 — Check if New Entity
 
