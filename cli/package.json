@@ -1,0 +1,30 @@
+{
+  "name": "create-dss-project",
+  "version": "0.1.0",
+  "description": "Scaffold a DS Strategy Stack project for Claude Code",
+  "bin": {
+    "create-dss-project": "./bin/create-dss-project.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "template/"
+  ],
+  "scripts": {
+    "prepublishOnly": "bash ../scripts/build-cli-template.sh"
+  },
+  "keywords": [
+    "strategy",
+    "claude-code",
+    "scaffold",
+    "cli",
+    "project-template"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.7.0"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2"
+  }
+}

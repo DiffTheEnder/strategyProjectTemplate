@@ -25,19 +25,27 @@ No boilerplate. No blank-page problem. Clone, configure, and go.
 
 ## Quick Start
 
+### Option A: npx (recommended)
+
 ```bash
-# 1. Clone the template
-git clone https://github.com/DiffTheEnder/DSS-Claude-Stack.git my-project
+npx create-dss-project my-project
 cd my-project
-
-# 2. Open in Claude Code
 claude
-
-# 3. Run the setup wizard
 /onboard
 ```
 
-The onboard skill walks you through configuring the project — **Quick Start** (7 questions) or **Full Setup** (16 questions). It asks about your goals, experience level, and which features you want, then generates your `project.config.json`, populates placeholders, and activates the right modules.
+The scaffolder asks 3 questions (project name, type, structure level) and sets up a ready-to-go project with the right modules pre-configured.
+
+### Option B: Git clone
+
+```bash
+git clone https://github.com/DiffTheEnder/DSS-Claude-Stack.git my-project
+cd my-project
+claude
+/onboard
+```
+
+Both paths end at `/onboard`, which walks you through the full configuration — **Quick Start** (7 questions) or **Full Setup** (16 questions). It asks about your goals, experience level, and which features you want, then generates your `project.config.json`, populates placeholders, and activates the right modules.
 
 > **New to coding?** See the [Getting Started Guide](docs/getting-started.md) for step-by-step instructions covering installation, setup, and Vercel deployment — no programming knowledge needed.
 

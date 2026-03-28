@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "build": "node build-data.js",
-    "start": "node build-data.js && npx serve . -l 3000",
-    "dev": "node build-data.js && concurrently \"npx serve . -l 3000\" \"node watch.js\""
+    "start": "node build-data.js && npx serve . -l 4000",
+    "dev": "node build-data.js && concurrently \"npx serve . -l 4000\" \"node watch.js\""
   },
   "dependencies": {
     "csv-parse": "^5.5.0",
