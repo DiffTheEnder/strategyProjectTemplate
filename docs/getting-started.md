@@ -114,7 +114,7 @@ GitHub is where your project lives online. You'll need it for:
 
 5. Claude will configure all the files based on your answers
 
-**Tip**: If you're new to this, choose **Quick Start** and select **"Learning"** as your goal. Claude will point you to the example project so you can explore first.
+**Tip**: If you're new to this, choose **Quick Start** and select **"Learning"** as your goal.
 
 ---
 
@@ -215,18 +215,37 @@ Here's a plain-language guide to every skill available:
 
 ---
 
-## Exploring the Example Project
+## Things You Can Say to Claude
 
-Want to see what a finished project looks like? Check out `examples/observability-market-entry/`.
+You don't need to memorise skills. You can talk to Claude in plain English and it will figure out what to do. Here are some real examples:
 
-This fictional project shows a team evaluating whether to enter the developer observability market. It includes:
-- 5 competitors researched
-- 8 prospects in the pipeline
-- 1 discovery call processed
-- 3 strategic decisions recorded
-- Scoring across 6 dimensions
+**After a meeting:**
+> "Here's my meeting transcript from the call with Acme Corp. Can you analyse this against my existing research to see what it means for our current hypothesis?"
 
-Browse the files to understand how everything connects. The example's `README.md` includes a detailed explanation of how data flows between files.
+**When researching:**
+> "Pull together everything we know about the competitive landscape and tell me where the biggest white space is."
+
+> "I just found this industry report — read it and update our competitor research with anything new."
+
+**When you need to decide something:**
+> "We need to decide between building our own data pipeline vs. using a third-party vendor. Set up a comparison with the pros, cons, and scores."
+
+> "Play devil's advocate on our go-to-market strategy. What are we not seeing?"
+
+**Before a meeting:**
+> "Prep me for my call with Nexus Payments tomorrow — what do we know about them and what should I ask?"
+
+**Pipeline management:**
+> "I have 3 new leads from a conference. Add them to the pipeline and draft a personalised outreach sequence for each."
+
+> "Based on all the discovery calls so far, what patterns are emerging? Are we hearing the same pain points?"
+
+**Getting a status update:**
+> "Write a 2-paragraph update I can send to the board summarising where we are this week."
+
+> "How close are we to hitting any of our kill conditions?"
+
+The key idea: Claude has your full project context loaded — research, pipeline, decisions, hypothesis, scoring. So you can ask strategic questions and get answers grounded in your actual data, not generic advice.
 
 ---
 

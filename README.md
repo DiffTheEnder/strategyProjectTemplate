@@ -19,6 +19,8 @@ A complete strategy project framework that runs inside [Claude Code](https://cla
 
 No boilerplate. No blank-page problem. Clone, configure, and go.
 
+![Dashboard Screenshot](dashboard/screenshot.png)
+
 ---
 
 ## Quick Start
@@ -93,9 +95,50 @@ my-project/
 ├── skills/                   # Project-level Claude Code skills
 ├── dashboard/                # Live web dashboard (Vercel-deployed)
 ├── docs/                     # Executive summary, memos, reports
-├── scripts/                  # Utility scripts
-└── examples/                 # Worked example project
+└── scripts/                  # Utility scripts
 ```
+
+---
+
+## What Can You Ask Claude?
+
+Beyond the built-in skills, you can talk to Claude in plain English. The stack gives Claude the context it needs to answer strategically — your research, pipeline, decisions, and hypothesis are all loaded into memory. Here are some things you might say:
+
+### Research & Analysis
+
+> "Here's my meeting transcript from the call with Acme Corp. Can you analyse this against my existing research to see what it means for our current hypothesis?"
+
+> "Pull together everything we know about the competitive landscape and tell me where the biggest white space is."
+
+> "I just found this industry report — read it and update our competitor research with anything new."
+
+> "What are the strongest and weakest parts of our hypothesis right now? What evidence are we missing?"
+
+### Discovery & Pipeline
+
+> "I have 3 new leads from a conference. Add them to the pipeline and draft a personalised outreach sequence for each."
+
+> "Based on all the discovery calls so far, what patterns are emerging? Are we hearing the same pain points?"
+
+> "Prep me for my call with Nexus Payments tomorrow — what do we know about them and what should I ask?"
+
+### Decision-Making
+
+> "We need to decide between building our own data pipeline vs. using a third-party vendor. Set up a comparison with the pros, cons, and scores."
+
+> "Play devil's advocate on our go-to-market strategy. What are we not seeing?"
+
+> "We're about to commit to a product-led growth motion. Pressure-test this before we lock it in."
+
+### Reporting & Status
+
+> "Write a 2-paragraph update I can send to the board summarising where we are this week."
+
+> "What's changed since last Monday? Give me a diff of all research and decisions."
+
+> "How close are we to hitting any of our kill conditions?"
+
+These are just starting points — you can ask Claude anything about your project and it will draw on the full context of your research, pipeline, and decisions to answer.
 
 ---
 
@@ -134,7 +177,6 @@ The `/onboard` wizard configures the stack based on your project type:
 - [Evidence Grading Rules](docs/memos/evidence-grading.md) — how claims are tagged and verified
 - [Skill Authoring Guide](docs/skill-authoring-guide.md) — build your own skills for the stack
 - [Dashboard Architecture](dashboard/CLAUDE.md) — how the dashboard reads, builds, and renders data
-- [Example Project](examples/observability-market-entry/) — fully worked fictional project showing data flow
 
 ---
 

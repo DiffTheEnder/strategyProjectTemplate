@@ -19,9 +19,6 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Getting Started guide for non-technical users (`docs/getting-started.md`)
 - Dashboard deployment guide (`dashboard/DEPLOY.md`)
-- Data flow annotations throughout the example project with inline `<!-- DATA FLOW -->` comments
-- Example data README explaining CSV columns and pipeline (`examples/observability-market-entry/data/README.md`)
-- Reset example script (`scripts/reset-example.sh`) for clearing example data
 - Onboarding now asks about user goals (learning, real project, team coordination, exploration)
 - Onboarding now asks about experience level and feature selection (Full, Essentials, Minimal)
 - Feature toggles in `project.config.json` (scoring, kill conditions, evidence grading, weekly reports, context snapshots)
@@ -43,4 +40,4 @@ All notable changes to this project will be documented in this file.
 - Evidence grading system
 - Multi-agent coordination via STATUS.md
 - Vercel deployment support
-- Worked example project
+- Project template

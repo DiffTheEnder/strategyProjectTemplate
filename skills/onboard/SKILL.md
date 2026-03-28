@@ -52,7 +52,6 @@ Ask only these 7 questions:
 #### Goal-based guidance
 
 When goal is **Learning**:
-- Point them to the example project: "Check out `examples/observability-market-entry/` to see what a populated project looks like."
 - Suggest browsing the getting-started guide: "See `docs/getting-started.md` for a walkthrough."
 
 #### Structure-based configuration
