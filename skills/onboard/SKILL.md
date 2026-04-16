@@ -87,7 +87,7 @@ Then auto-fill defaults:
 - Discovery module → included unless user answered "none" for entity type (or "Minimal" structure)
 - Dashboard module → included by default (unless "Minimal" structure)
 
-After auto-filling, proceed directly to the **Validation / Dry-Run Step**, then continue with replacement.
+After auto-filling, proceed to the **Optional Seed Phase**, then the **Validation / Dry-Run Step**, then continue with replacement.
 
 ### Full Setup Mode
 
@@ -241,6 +241,82 @@ Once all checks pass (or the user acknowledges warnings), proceed to Group 1.
 
 ---
 
+## Optional Seed Phase — Seed Your Second Brain (~5 min)
+
+**Run this for BOTH Quick Start and Full Setup**, after the structural questions and before the validation table. First ask: "Want to spend ~5 minutes seeding your project with any material you already have? (y/n — skip is fine, you can seed anytime later.)" If `n`, proceed directly to the validation step. If `y`, ask questions S1–S5 below.
+
+Explain to the user:
+
+> The system's real value shows up once it's populated — memory that carries across sessions, evidence trails, hypotheses that get pressure-tested. If you have *any* existing material (even messy notes), we can seed it now so the next session starts warm instead of empty.
+>
+> Everything below is **optional** — skip anything you don't have. Skipped items become TODO markers that `/session-start` will surface later so you don't forget.
+
+Ask these 5 questions in order. Each accepts a single-word skip (`skip`, `none`, or empty).
+
+**S1. Existing research / raw material**
+> "Paste any existing research, memos, bullet points, links, competitor notes, transcripts — anything you've already collected about this project. Messy is fine; we won't restructure on import."
+
+- If answered: append verbatim to `memory/research.md` under a new section `## Raw material (imported {{DATE}})` with a provenance header noting "imported during onboard — not yet graded for evidence". Do **not** reformat.
+- If skipped: add `- [ ] Seed memory/research.md with any existing material you have` to the `## Seed TODOs` section of `memory/MEMORY.md` (create the section if missing).
+
+**S2. Known entities**
+> "Name 3–5 {{ENTITY_TYPE_PLURAL}} you already know you care about. One per line. A one-line note after each (optional) helps future-you remember why."
+>
+> Example:
+> ```
+> Acme Corp — current market leader, pricing opaque
+> Nexus Payments — intro from Jane last month
+> DentaSync — similar model in adjacent vertical
+> ```
+
+- If answered: for each entity:
+  - Append a row to `{{PIPELINE_SOURCE_OF_TRUTH}}` (usually `data/entities.csv`) with `name`, auto-generated `slug`, `status: "Not started"`, and the user's one-liner in the `notes` column. Other columns blank.
+  - Create stub file `research/entities/<slug>.md` containing:
+    ```
+    # <name>
+
+    _Added during onboard on {{DATE}}. Notes: <user's one-liner>_
+
+    _TODO: run `/enrich-entity <slug>` to populate this teardown._
+    ```
+  - If the file `research/entities/<slug>.md` already exists from a previous run, skip (do not overwrite).
+- If skipped: add `- [ ] Add your first {{ENTITY_TYPE_PLURAL}} to {{PIPELINE_SOURCE_OF_TRUTH}}` to `## Seed TODOs`.
+
+**S3. Gut hypothesis**
+> "In one sentence, what do you currently *believe* about this problem or market? Even if you're unsure — we'll pressure-test it later. This becomes your working hypothesis, tagged `[ASSUMPTION]` until evidence changes it."
+
+- If answered AND different from the formal `strategicHypothesis` (Q6), append to `memory/decisions.md` under a new entry:
+  ```
+  ## {{DATE}} — Initial working hypothesis [ASSUMPTION]
+
+  <user's sentence>
+
+  **Status**: Unvalidated. Pressure-test with `/critical-reasoning` once seed discovery is underway.
+  ```
+- If the user's sentence matches Q6 (the formal hypothesis), skip this write — it's already captured.
+- If skipped: add `- [ ] Write an initial working hypothesis to memory/decisions.md` to `## Seed TODOs`.
+
+**S4. One question for this week**
+> "What's ONE question you need answered in the next 7 days? This becomes your first priority in STATUS.md so `/session-start` surfaces it every session until it's resolved."
+
+- If answered: add a row to `STATUS.md` "In Progress" with:
+  - Workstream: `Discovery` (or `Research` if discovery module is disabled)
+  - Item: the user's question
+  - Owner: first name from `{{TEAM}}` (or `"TBD"`)
+  - Started: `{{DATE}}`
+  - Notes: `Seeded at onboard`
+- If skipped: add `- [ ] Pick one question to focus on this week and add it to STATUS.md` to `## Seed TODOs`.
+
+**S5. Top worry**
+> "What would make you kill this project? One sentence. (If it's already in your kill conditions from Q13, just say 'covered'.)"
+
+- If answered AND meaningfully different from existing kill conditions: append to the `memory/MEMORY.md` Kill Conditions table as a candidate row with status `UNTESTED` and a note "Surfaced during onboard — refine into falsifiable threshold".
+- If "covered" or skipped: no action, no TODO.
+
+After Phase 3, proceed to the Validation table below.
+
+---
+
 ## Validation / Dry-Run Step
 
 After all answers are collected (whether via Quick Start or Full Setup) but **before** any file replacement, present a summary table to the user for confirmation:
@@ -269,6 +345,11 @@ After all answers are collected (whether via Quick Start or Full Setup) but **be
 > | **Goal** | _{answer from Q14 or Quick Start Q6}_ |
 > | **Experience level** | _{answer from Q15, or "Not asked" if Quick Start}_ |
 > | **Features disabled** | _{list of disabled features, or "None"}_ |
+> | **Seed — raw material** | _{word-count of pasted material, or "skipped"}_ |
+> | **Seed — entities** | _{count of entities seeded, or "skipped"}_ |
+> | **Seed — working hypothesis** | _{"yes" if distinct from formal hypothesis, else "same as formal", else "skipped"}_ |
+> | **Seed — this-week question** | _{the question, or "skipped"}_ |
+> | **Seed — top worry** | _{"added to kill conditions", or "covered", or "skipped"}_ |
 >
 > **Proceed?** (Yes / Edit a value / Start over)
 
@@ -280,7 +361,7 @@ Only proceed with file modifications once the user confirms.
 
 Once the user confirms and all answers are finalised:
 
-1. **Search and replace all `{{PLACEHOLDER}}` values** across every file in the project, **including `CLAUDE.md` at the project root** (which contains placeholders like `{{PROJECT_NAME}}`, `{{PIPELINE_SOURCE_OF_TRUTH}}`, etc.):
+1. **Search and replace all `{{PLACEHOLDER}}` values** across every file in the project:
    - `{{PROJECT_NAME}}` → answer to Q1
    - `{{PROJECT_SLUG}}` → lowercase, hyphenated version of Q1
    - `{{ONE_LINE_DESCRIPTION}}` → Q2
@@ -390,6 +471,18 @@ Write the project configuration to `project.config.json` at the repo root using 
    ```
    Should return zero results (all placeholders replaced).
 
+### Step 6.3: Write seed material (from Optional Seed Phase)
+
+Apply the writes described in the Optional Seed Phase above. The ordering matters — do these **after** placeholder replacement so `{{DATE}}`, `{{PIPELINE_SOURCE_OF_TRUTH}}`, `{{ENTITY_TYPE}}`, `{{ENTITY_TYPE_PLURAL}}`, and `{{TEAM}}` resolve correctly:
+
+- **S1 raw material** → append to `memory/research.md`
+- **S2 entities** → append rows to `data/entities.csv` (or configured `pipelineSourceOfTruth`) **and** create `research/entities/<slug>.md` stubs. Create `research/entities/` if it doesn't exist.
+- **S3 working hypothesis** → append to `memory/decisions.md` (only if distinct from formal hypothesis)
+- **S4 this-week question** → append row to `STATUS.md` In Progress
+- **S5 top worry** → append candidate row to `memory/MEMORY.md` Kill Conditions table
+
+For every **skipped** S-question, ensure `memory/MEMORY.md` has a `## Seed TODOs` section with the corresponding `- [ ]` item. Create the section just above the `## Important File Paths` section if missing.
+
 ### Step 6.5: Transform README
 
 After verification, replace the open-source template README with a project-instance README. Generate a new `README.md` at the repo root containing:
@@ -416,12 +509,56 @@ Do **not** include template-level instructions, contribution guidelines, or lice
    cd dashboard && npm install && node build-data.js
    ```
 
-8. **Report completion** to the user with:
-   - Summary of all values set
-   - List of modules included/excluded
-   - List of features enabled/disabled
-   - Files generated (entity CSV, project.config.json, README)
-   - Suggested first actions (e.g., "Start with competitor research", "Define your first 10 targets")
+8. **Report completion** to the user using the structured template below (don't free-form it).
+
+### Step 8: Completion report — "Your Next 3 Moves"
+
+Print this structured report. The "Your Next 3 Moves" section is **dispatched by project type** — use the table below.
+
+```
+  Onboarding complete.
+
+  Project:     {{PROJECT_NAME}}
+  Type:        {selected type label}
+  Modules:     discovery={yes/no}, pipeline={yes/no}, dashboard={yes/no}
+  Features:    {comma-separated list of enabled features}
+  Seed data:   {count of seeded items, or "none — see Seed TODOs in memory/MEMORY.md"}
+  Files:       project.config.json, README.md, memory/, data/entities.csv
+
+  ───────── Your next 3 moves ─────────
+  {project-type-dispatched block from the table below}
+
+  ───────── Or take the guided tour ─────────
+  Run /tour for a ~15-minute walkthrough on your real seed data.
+  It runs /enrich-entity, /critical-reasoning, and /session-end
+  end-to-end so you feel the loop before working for real.
+
+  ───────── Docs worth reading now ─────────
+  - docs/recipes/                    — workflow recipes for common scenarios
+  - docs/memos/evidence-grading.md   — how claims get tagged
+  - README.md "Your first 30 minutes" — narrative onboarding recap
+
+  This skill is no longer needed. You can delete `skills/onboard/`.
+```
+
+**Project-type → "Your Next 3 Moves" dispatch table.** Use the row for the project type selected in Q8 (or Quick Start Q4).
+
+| Project type | Move 1 | Move 2 | Move 3 |
+|---|---|---|---|
+| Market Entry | `/bottom-up-tam` on your target market (user-level skill) | `/critical-reasoning` on your working hypothesis | `/compare-options` on 2–3 entry modes (direct, partner, acquire) |
+| Growth Strategy | `/critical-reasoning` on current growth hypothesis | `/enrich-entity` on top 3 competitors | `/gtm-playbook` (user-level) for the chosen motion |
+| Competitor Research | `/enrich-entity <first seeded entity>` | Repeat `/enrich-entity` for each seeded entity | `/synthesise` across the enriched set to find white space |
+| Product Launch / GTM | `/critical-reasoning` on positioning statement | `/gtm-playbook` (user-level) | `/pricing-packaging` (user-level) |
+| Internal Implementation | `/critical-reasoning` on rollout plan | `/burning-platform` (user-level) for the change narrative | `/decision` to lock phase 1 scope |
+| Vendor / Partner Evaluation | `/enrich-entity` on each seeded vendor | `/compare-options` across vendors on your scoring dimensions | `/decision` on the chosen vendor with full rationale |
+| Due Diligence | `/enrich-entity` on the target | `/critical-reasoning` on the investment thesis | `/synthesise` into a go/no-go memo |
+| Business Case | `/critical-reasoning` on the thesis | `/unit-economics-modeler` (user-level) for CAC/LTV/payback | `/compare-options` on 2–3 paths |
+| Transformation / Change | `/burning-platform` (user-level) | `/partnership-ecosystem-strategy` (user-level) | `/product-roadmap-prioritisation` (user-level) for the sequenced plan |
+| Custom | `/session-start` (orient) | `/critical-reasoning` on your hypothesis | `/synthesise` of anything you have so far |
+
+If any move references a seeded entity or hypothesis that the user *did not* provide in Phase 3, substitute a fallback:
+- Missing entity → "Add your first {{ENTITY_TYPE}} to `{{PIPELINE_SOURCE_OF_TRUTH}}`, then run `/enrich-entity`"
+- Missing hypothesis → "Write your first working hypothesis to `memory/decisions.md`, then `/critical-reasoning` on it"
 
 ---
 

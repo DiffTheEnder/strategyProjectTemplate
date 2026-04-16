@@ -23,7 +23,7 @@ rsync -a \
   --exclude='.claude' \
   --exclude='dashboard/data/*.json' \
   --exclude='dashboard/screenshot.png' \
-  --exclude='project.config.json' \
+  --exclude='/project.config.json' \
   --exclude='CONTRIBUTING.md' \
   --exclude='.github/ISSUE_TEMPLATE' \
   --exclude='.github/pull_request_template.md' \

@@ -1,0 +1,37 @@
+{
+  "templateVersion": "1.0.0",
+  "templateSource": "github.com/DiffTheEnder/DSS-Claude-Stack",
+  "projectName": "DentaSync — ANZ Market Entry",
+  "projectSlug": "dentasync-anz-market-entry",
+  "projectType": "market-entry",
+  "oneLineDescription": "Evaluate ANZ market entry for an AI-first dental practice management add-on",
+  "goal": "Validate hypothesis and produce a go/no-go recommendation by 2026-02-28 based on 15+ discovery calls and a design-partner LOI",
+  "team": "Sam (discovery/GTM), Priya (product/tech)",
+  "scope": "Mid-sized independent ANZ dental practices (2-8 chairs). Add-on, not full PMS replacement.",
+  "outOfScope": "DSO/corporate dental chains, solo practices, specialist-only clinics (orthodontic/endodontic), outside ANZ.",
+  "strategicHypothesis": "Mid-sized independent ANZ dental practices (2-8 chairs) will pay $600-$1,200/mo for an AI-first practice management add-on that automates recall and billing, because existing PMSs have a 10-year UX gap and dentists want to stop fighting their software.",
+  "icpDescription": "Independent dental practice, 2-8 chairs, in ANZ metro or regional centre. Currently using Dentrix, Oasis, Praktika, or D4W. Practice principal or practice manager makes software decisions. Annual revenue $1M-$6M AUD. Pain: manual recall workflow, billing/claim friction with Medicare/private health.",
+  "entityType": "practice",
+  "entityTypePlural": "practices",
+  "pipelineSourceOfTruth": "data/entities.csv",
+  "dashboardUrl": "https://dentasync-anz.vercel.app",
+  "modules": {
+    "discovery": true,
+    "pipeline": true,
+    "dashboard": true
+  },
+  "features": {
+    "scoring": true,
+    "killConditions": true,
+    "evidenceGrading": true,
+    "weeklyReports": true,
+    "contextSnapshots": true
+  },
+  "scoringDimensions": ["White Space", "Urgency", "Feasibility", "Defensibility", "Revenue Potential"],
+  "killConditions": [
+    "Fewer than 4 of 10 discovery practices rank recall automation in their top-3 pains",
+    "No willingness-to-pay signal above $800/mo after 10 discovery calls",
+    "TAM estimate falls below $50M AUD ARR",
+    "Unable to secure 2 design-partner LOIs within 6 weeks"
+  ]
+}

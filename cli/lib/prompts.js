@@ -32,6 +32,12 @@ async function askQuestions(defaultName) {
         { title: 'Minimal', description: 'Bare bones: research and notes only', value: 'minimal' },
       ],
     },
+    {
+      type: 'confirm',
+      name: 'withExamples',
+      message: 'Include a fully-worked example project to browse? (see what a populated second brain looks like — delete anytime)',
+      initial: true,
+    },
   ], {
     onCancel: () => {
       console.log('\nSetup cancelled.');

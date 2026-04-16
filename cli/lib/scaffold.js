@@ -25,6 +25,7 @@ const EXCLUDE_FROM_COPY = [
   'CONTRIBUTING.md',
   '.github/ISSUE_TEMPLATE',
   '.github/pull_request_template.md',
+  'examples',
 ];
 
 /**
@@ -66,6 +67,31 @@ function copyDir(src, dest, baseDir) {
 }
 
 /**
+ * Recursively copy a directory with only .DS_Store filtered — used for the
+ * demo project where we deliberately *want* the populated config and data.
+ * @param {string} src
+ * @param {string} dest
+ */
+function copyDirVerbatim(src, dest) {
+  fs.mkdirSync(dest, { recursive: true });
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+
+  for (const entry of entries) {
+    if (entry.name === '.DS_Store') continue;
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+
+    if (entry.isDirectory()) {
+      copyDirVerbatim(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+      const stat = fs.statSync(srcPath);
+      fs.chmodSync(destPath, stat.mode);
+    }
+  }
+}
+
+/**
  * Remove a path if it exists.
  * @param {string} targetDir
  * @param {string} relativePath
@@ -81,7 +107,7 @@ function removeIfExists(targetDir, relativePath) {
  * Validate scaffold options before proceeding.
  * @param {string} targetDir
  * @param {string} templateDir
- * @param {{projectName: string, projectType: string, structure: string}} options
+ * @param {{projectName: string, projectType: string, structure: string, withExamples?: boolean}} options
  * @throws {Error} If validation fails
  */
 function validateOptions(targetDir, templateDir, options) {
@@ -119,11 +145,11 @@ function validateOptions(targetDir, templateDir, options) {
  * Scaffold a new project from the template.
  * @param {string} targetDir - Where to create the project
  * @param {string} templateDir - Source template directory
- * @param {{projectName: string, projectType: string, structure: string}} options
- * @returns {{modules: Object, features: Object}}
+ * @param {{projectName: string, projectType: string, structure: string, withExamples?: boolean}} options
+ * @returns {{modules: Object, features: Object, examplesCopied: boolean}}
  */
 function scaffold(targetDir, templateDir, options) {
-  const { projectType, structure, projectName } = options;
+  const { projectType, structure, projectName, withExamples } = options;
 
   validateOptions(targetDir, templateDir, options);
 
@@ -238,7 +264,20 @@ function scaffold(targetDir, templateDir, options) {
       JSON.stringify(config, null, 2) + '\n',
     );
 
-    return { modules, features };
+    // 7. Copy demo project if requested. `examples/` is in EXCLUDE_FROM_COPY
+    // so we bring it in separately here when the user opts in. Use verbatim
+    // copy so the demo's populated project.config.json is preserved.
+    let examplesCopied = false;
+    if (withExamples) {
+      const demoSrc = path.join(templateDir, 'examples', 'demo');
+      if (fs.existsSync(demoSrc)) {
+        const demoDest = path.join(targetDir, 'examples', 'demo');
+        copyDirVerbatim(demoSrc, demoDest);
+        examplesCopied = true;
+      }
+    }
+
+    return { modules, features, examplesCopied };
   } catch (err) {
     // Clean up on any failure after the initial copy
     if (fs.existsSync(targetDir)) {

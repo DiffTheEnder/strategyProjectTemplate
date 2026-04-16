@@ -34,10 +34,11 @@ async function main(nameArg) {
   console.log(`\n  Creating project in ${targetDir}\n`);
 
   try {
-    const { modules } = scaffold(targetDir, templateDir, {
+    const { modules, examplesCopied } = scaffold(targetDir, templateDir, {
       projectName: answers.projectName,
       projectType: answers.projectType,
       structure: answers.structure,
+      withExamples: answers.withExamples,
     });
 
     // Git init
@@ -67,6 +68,10 @@ async function main(nameArg) {
       }
     }
 
+    const demoLine = examplesCopied
+      ? '\n  Optional — see what a populated project looks like:\n    ls examples/demo    # browse a fully-worked example (DentaSync)\n'
+      : '';
+
     console.log(`
   \u2705 Project created!
 
@@ -74,10 +79,13 @@ async function main(nameArg) {
 
     cd ${answers.projectName}
     claude
-    /onboard
-
-  The /onboard skill will walk you through configuring
-  your hypothesis, scoring dimensions, and kill conditions.
+    /onboard           # configure your project (~5 min)
+    /tour              # 15-min guided first session on your real data
+${demoLine}
+  The /onboard skill walks you through your hypothesis, scoring
+  dimensions, kill conditions, and will offer an optional seeding
+  step (paste existing notes, name known entities) so your first
+  real session starts warm instead of empty.
 `);
   } catch (err) {
     console.error(`\n  Error: ${err.message}\n`);

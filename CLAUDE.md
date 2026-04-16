@@ -109,7 +109,8 @@ Evidence grading rules: `docs/memos/evidence-grading.md`
 
 | Skill | Phase | Description |
 |-------|-------|-------------|
-| `/onboard` | Setup | One-time project configuration wizard |
+| `/onboard` | Setup | One-time project configuration wizard (structural + optional seed phase) |
+| `/tour` | Setup | 15-minute guided first-session walkthrough on real seed data |
 | `/session-start` | Session | Load context, check conflicts, show priorities |
 | `/session-end` | Session | 10-step end-of-session housekeeping |
 | `/health-check` | Quality | Project integrity audit and health score |

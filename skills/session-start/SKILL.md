@@ -64,6 +64,14 @@ If the discovery module is active, scan `memory/discovery.md` Outreach Log and `
 
 Report any overdue items to the user.
 
+### Step 5.5 — Surface Seed TODOs
+
+Scan `memory/MEMORY.md` for a `## Seed TODOs` section. If present and contains any unchecked `- [ ]` items, surface them at the top of the session briefing as "Seed TODOs (from onboard)".
+
+These are items the user skipped during `/onboard` — things like "Add your first entity", "Write an initial working hypothesis", "Paste any existing research". They don't block work but they're easy wins that compound over time.
+
+Don't nag every session — just list them once per session briefing. The user can mark them complete (`- [x]`) or leave them indefinitely.
+
 ## Step 6 — Report Time Since Last Session
 
 Read `docs/output/work-log.md`. Find the most recent entry date. Calculate and report how many days since the last session.
