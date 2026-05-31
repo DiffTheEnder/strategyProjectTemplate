@@ -27,3 +27,6 @@ cli/template/
 
 # Root lock file (subpackages have their own)
 /package-lock.json
+
+# graphify knowledge graph (regenerated locally, not for VCS)
+/graphify-out/
